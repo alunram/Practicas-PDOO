@@ -8,6 +8,8 @@ require_relative 'Weapon'
 require_relative 'Dice'
 require_relative 'GameCharacter'
 
+#probar si quitando el nombre de la clase los constructores de copia siguen funcionando
+
 module Deepspace
     puts "######## LOOT ######### \n"
     pruebaloot = Deepspace::Loot.new(1,2,3,4,5)
