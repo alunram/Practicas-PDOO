@@ -43,4 +43,16 @@ public class Loot {     //Se quita el public?. En los consultores se debe poner 
     public int getNMedals(){
         return nMedals;
     }
+    
+    //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE LOOT:
+    public String mostrar(){
+        String result = "Loot: ";
+        result  = result + "NSupplies: " + getNSupplies() + "\n";
+        result  = result + "    NWeapons: " + getNWeapons() + "\n";
+        result  = result + "    NShields: " + getNShields() + "\n";
+        result  = result + "    NHangars: " + getNHangars() + "\n";
+        result  = result + "    NMedals: " + getNMedals() + "\n";
+        
+        return result;
+    }
 }

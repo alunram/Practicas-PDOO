@@ -71,7 +71,7 @@ module Deepspace
     puts pruebadice.initWithNWeapons
 
     puts "initWithNShields: "
-    puts pruebadice.initWithNWeapons
+    puts pruebadice.initWithNShields
 
     puts "whoStarts (5): "
     puts pruebadice.whoStarts(5)

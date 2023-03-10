@@ -14,16 +14,17 @@ public class ShieldBooster { //quito el public?
     float boost;
     int uses;
     
-    ShieldBooster(String n, int b, int u){
+    ShieldBooster(String n, float b, int u){
         name = n;
         boost = b;
         uses = u;
     }
     
     ShieldBooster(ShieldBooster copia){
-        name = copia.name;
-        boost = copia.boost;    //seria mas correcto usar los consultores?
-        uses = copia.uses;
+        this(copia.name, copia.boost, copia.uses);
+        /*name = copia.name;
+        boost = copia.boost;    
+        uses = copia.uses;*/
     }
     
     public float getBoost(){
@@ -36,9 +37,19 @@ public class ShieldBooster { //quito el public?
     
     public float useIt(){
         if(uses > 0){
-            uses = uses--;
+            //uses = uses - 1;
+            uses--;
             return boost;
         }else
             return 1.0f;
+    }
+    
+    //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE SHIELDBOOSTER:
+    public String mostrar(){
+        String result = "name: "  + this.name + "\n";
+        result  = result + "    Boost: " + getBoost() + "\n";
+        result  = result + "    Uses: " + getUses() + "\n";
+        
+        return result;
     }
 }

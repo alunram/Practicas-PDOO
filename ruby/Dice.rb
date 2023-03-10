@@ -21,16 +21,17 @@ module Deepspace
 
         #Este método determina el número de armas que recibirá una estación espacial al ser creada
         def initWithNWeapons
-            if @generator < @NWEAPONSPROB   
+            aux = @generator
+            if aux < @NWEAPONSPROB   
                 return 1
-            elsif @generator < 2*@NWEAPONSPROB
+            elsif aux < 2*@NWEAPONSPROB
                 return 2
             else return 3
             end
         end
 
         #Este método determina el número de potenciadores de escudo que recibirá una estación espacial al ser creada
-        def initWIthNshields
+        def initWithNShields
             if @generator < @NSHIELDSPROB   
                 return 0
             else

@@ -21,9 +21,10 @@ public class Weapon {   //quito el public?
     }
     
     Weapon (Weapon copia){
-        name = copia.name;
+        this(copia.name, copia.type, copia.uses);
+        /*name = copia.name;
         type = copia.type;
-        uses = copia.uses;
+        uses = copia.uses;*/
     }
     
     public WeaponType getType(){
@@ -44,5 +45,15 @@ public class Weapon {   //quito el public?
             return power();
         }else
             return 1.0f;
+    }
+    
+    //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE WEAPON:
+    public String mostrar(){
+        String result = "name: "  + this.name + "\n";
+        result  = result + "    Type: " + getType() + "\n";
+        result  = result + "    Uses: " + getUses() + "\n";
+        result  = result + "    Power: " + power() + "\n";
+        
+        return result;
     }
 }

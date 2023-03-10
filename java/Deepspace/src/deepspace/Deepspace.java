@@ -16,6 +16,9 @@ public class Deepspace {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        TestP1 tp1 = new TestP1();
+        TestP1.main(args);
     }
     
 }

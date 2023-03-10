@@ -21,9 +21,10 @@ public class SuppliesPackage {  //Se quita el public?
     }
     
     SuppliesPackage(SuppliesPackage copia){
-        ammoPower = copia.ammoPower;
+        this(copia.ammoPower, copia.fuelUnits, copia.shieldPower);
+        /*ammoPower = copia.ammoPower;
         fuelUnits = copia.fuelUnits;
-        shieldPower = copia.shieldPower;
+        shieldPower = copia.shieldPower;*/
     }
     
     public float getAmmoPower(){
@@ -36,5 +37,15 @@ public class SuppliesPackage {  //Se quita el public?
     
     public float getShieldPower(){
         return shieldPower;
+    }
+    
+    //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE LOOT:
+    public String mostrar(){
+        String result = "SuppliesPackage: ";
+        result  = result + "    AmmoPower: " + getAmmoPower() + "\n";
+        result  = result + "    FuelUnits: " + getFuelUnits() + "\n";
+        result  = result + "    ShieldPower: " + getShieldPower() + "\n";
+        
+        return result;
     }
 }
