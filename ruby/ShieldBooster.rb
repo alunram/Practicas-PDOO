@@ -35,5 +35,13 @@ module Deepspace
                 return 1.0
             end
         end
+
+        def to_s
+            return "Name: #{@name}, Boost: #{@boost}, Uses: #{@uses}"
+        end
+
+        def getUIversion
+            return ShieldToUI.new(self)
+        end
     end
 end

@@ -58,5 +58,9 @@ module Deepspace
                 return false #no se movera
             end
         end
+
+        def to_s
+            return "NHangarsProb: #{@NHANGARSPROB}, NShieldsProb: #{@NSHIELDSPROB}, NWeaponsProb: #{@NWEAPONSPROB}, FirstShotProb: #{@FIRSTSHOTPROB}, Generator: #{@generator}"
+        end
     end
 end

@@ -23,6 +23,9 @@ module Deepspace
         def self.newCopy(copia)
             SuppliesPackage.new(copia.ammoPower, copia.fuelUnits,copia.shieldPower)
         end
+
+        def to_s
+            return "AmmoPower: #{@ammoPower}, FuelUnits: #{@fuelUnits}, ShieldPower: #{@shieldPower}"
+        end
     end
-    
 end

@@ -20,6 +20,8 @@ module Deepspace
             puts pruebaloot2.inspect
             pruebaloot3 = Deepspace::Loot.new(0,2,4,6,8)
             puts pruebaloot3.inspect
+            puts "to_s:"
+            puts pruebaloot1.to_s
             puts "############################################################## \n\n"
         
 
@@ -27,6 +29,8 @@ module Deepspace
             puts "######################## SUPPLIES PACKAGE ######################## \n"
             pruebasupplies = Deepspace::SuppliesPackage.new(1.0, 1.0, 1.0)
             puts pruebasupplies.inspect
+            puts "to_s:"
+            puts pruebasupplies.to_s
             pruebasupplies2 = Deepspace::SuppliesPackage.new(0.0, 5.0, 10.0)
             puts pruebasupplies2.inspect
             pruebasupplies3 = Deepspace::SuppliesPackage.newCopy(pruebasupplies)
@@ -38,6 +42,8 @@ module Deepspace
             puts "######################## SHIELDBOOSTER ######################## \n"
             pruebashieldbooster1 = Deepspace::ShieldBooster.new("ShieldBooster1", 5.0, 2)
             puts pruebashieldbooster1.inspect
+            puts "to_s:"
+            puts pruebashieldbooster1.to_s
             puts pruebashieldbooster1.useIt
             puts pruebashieldbooster1.inspect
             puts pruebashieldbooster1.useIt

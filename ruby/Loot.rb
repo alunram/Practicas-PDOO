@@ -25,5 +25,13 @@ module Deepspace
         def nMedals
             @nMedals
         end
+
+        def to_s
+            return "NSupplies: #{@nSupplies}, nWeapons: #{@nWeapons}, nShields: #{@nShields}, nHangars: #{@nHangars}, nMedals: #{@nMedals}"
+        end
+
+        def getUIversion
+            return LootToUI.new(self)
+        end
     end
 end

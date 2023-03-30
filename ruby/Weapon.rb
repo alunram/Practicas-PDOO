@@ -15,7 +15,7 @@ module Deepspace
         end
         ######################################
 
-        #no estoy seguro de si hace falta
+        #no estoy seguro de si hace falta: si, para el constructor de copia
         def name
             @name
         end
@@ -40,6 +40,20 @@ module Deepspace
                 return 1.0
             end
         end
+
+        def to_s
+            if (type == Deepspace::WeaponType::LASER)
+                t = "LASER"
+            elsif (type == Deepspace::WeaponType::MISSILE)
+                t = "MISSILE"
+            else
+                t = "PLASMA"
+            end
+            return "Name: #{@name}, Type: " + t + ", Uses: #{@uses}"
+        end
+
+        def getUIversion
+            return WeaponToUI.new(self)
+        end
     end
-    
 end

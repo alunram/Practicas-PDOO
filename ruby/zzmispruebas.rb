@@ -14,12 +14,15 @@ module Deepspace
     puts "######## LOOT ######### \n"
     pruebaloot = Deepspace::Loot.new(1,2,3,4,5)
     puts pruebaloot.inspect
+    puts "prueba to_s"
+    puts pruebaloot.to_s
     puts "########################## \n\n"
 
 
     puts "######## SUPPLIES PACKAGE ######### \n"
     pruebasupplies = Deepspace::SuppliesPackage.new(1.0, 1.0, 1.0)
     puts pruebasupplies.inspect
+    puts pruebasupplies.to_s
 
     pruebasupplies2 = Deepspace::SuppliesPackage.newCopy(pruebasupplies)
     puts pruebasupplies2.inspect
@@ -29,6 +32,7 @@ module Deepspace
     puts "######## SHIELD BOOSTER ######### \n"
     pruebashieldbooster = Deepspace::ShieldBooster.new("PRUEBA", 5.0, 3)
     puts pruebashieldbooster.inspect
+    puts pruebashieldbooster.to_s
 
     pruebashieldbooster2 = Deepspace::ShieldBooster.newCopy(pruebashieldbooster)
     puts pruebashieldbooster2.inspect
@@ -41,6 +45,8 @@ module Deepspace
     puts "######## WEAPON ######### \n"
     pruebaweapon = Deepspace::Weapon.new("weaponprueba", Deepspace::WeaponType::LASER, 6.0)
     puts pruebaweapon.inspect
+    puts "to_s"
+    puts pruebaweapon.to_s
     puts "\n"
 
     puts "veo que es el mismo tipo:"
@@ -81,6 +87,14 @@ module Deepspace
     
     puts "spaceStationMoves:"
     puts pruebadice.spaceStationMoves(0.3)
+
+    puts "Prueba to_s:"
+    puts pruebadice.to_s
     puts "########################## \n\n"
+
+    #times en lugar de un for:
+    3.times{
+        puts "hola"
+    }
 end
     
