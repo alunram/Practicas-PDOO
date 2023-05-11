@@ -10,6 +10,17 @@ module Deepspace
             def power
                 @power
             end
+
+            def to_s
+                if (self == Deepspace::WeaponType::LASER)
+                    t = "LASER"
+                elsif (self == Deepspace::WeaponType::MISSILE)
+                    t = "MISSILE"
+                else
+                    t = "PLASMA"
+                end
+                return t
+            end
         end
 
         #las unicas instancias:

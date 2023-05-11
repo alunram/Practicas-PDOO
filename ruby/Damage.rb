@@ -1,12 +1,15 @@
 #encoding:utf-8
 
+require_relative 'DamageToUI'
+
 module Deepspace
     class Damage
+        @@NOUSE = -1
         #tenemos que poner new como privado?? (como en el ejemplo de la diap 14 del tema 3)
         #me ha dicho el profesor que si
-        def initialize(w,s, wl)     #los dos primeros son int (numero de weapons y shields), el tercero es un array
+        def initialize(w,s, wl)     #los dos primeros son int (numero de weapons y shields), el tercero es un array de WeaponType
             @nWeapons = w
-            @nShields = s
+            @nShields = s   #numero de escudos que pierdes
             @weapons = wl
         end
 
@@ -19,10 +22,10 @@ module Deepspace
         end
 
         def self.newSpecificWeapons(wl, s)
-            Damage.new(wl.length, s, wl)    #el numero wl.lenght en realidad no se va a usar en este tipo de weapon
+            Damage.new(@@NOUSE, s, wl)    #el numero wl.lenght en realidad no se va a usar en este tipo de weapon
         end
 
-        private_class_method    :new
+        #private_class_method    :new
 
         def self.newCopy(d)
             if d.weapons == nil
@@ -51,7 +54,8 @@ module Deepspace
         end
 
         public
-        def adjust(w, s)    #w array de weapons, s array de shieldboosters. devuelve un damage
+        #se ajusta a la situacion del jugador, para que no se quede pillado el juego
+        def adjust(w, s)    #w array de weapons, s array de shieldboosters (del jugador). devuelve un damage
             shmin = [@nShields,s.length].min
             weapmin = [@nWeapons,w.length].min
 
@@ -85,11 +89,15 @@ module Deepspace
         end
 
         def discardWeapon(w)    #w es un weapon (no weapontype)
-            aux = @weapons.index(w.type)
-            if ((@nWeapons > 0) && (aux == nil))
-                @nWeapons -= 1
-            elsif aux != nil
-                @weapons.delete_at(aux)
+            if @weapons == nil
+                if @nWeapons > 0
+                    @nWeapons-=1
+                end
+            else
+                index = @weapons.index(w.type)
+                if index != nil
+                    @weapons.delete_at(index)
+                end
             end
         end
 
@@ -108,6 +116,7 @@ module Deepspace
         end
 
         def to_s
+            we = "vacio"
             if weapons != nil
                 we = "["
                 @weapons.each { |w|

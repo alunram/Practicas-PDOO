@@ -19,28 +19,28 @@ public class TestP1 {
         System.out.println("################# LOOT ##################");
         //Loot(int nsupplies, int nweapons, int nshields, int nhangars, int nmedals)
         Loot loot1 = new Loot(1,2,3,4,5);
-        System.out.println(loot1.mostrar());
+        System.out.println(loot1.toString());
         Loot loot2 = new Loot(5,4,3,2,1);
-        System.out.println(loot2.mostrar());
+        System.out.println(loot2.toString());
         Loot loot3 = new Loot(0,2,4,6,8);
-        System.out.println(loot3.mostrar());
+        System.out.println(loot3.toString());
         System.out.println("########################################");
         
         System.out.println("\n\n############ SUPPLIES PACKAGE ############");
         //SuppliesPackage(float ammopower, float fuelunits, float shieldpower)
         SuppliesPackage supplies1 = new SuppliesPackage(1.0f, 1.0f, 1.0f);
-        System.out.println(supplies1.mostrar());
+        System.out.println(supplies1.toString());
         SuppliesPackage supplies2 = new SuppliesPackage(0.0f, 5.0f, 10.0f);
-        System.out.println(supplies2.mostrar());
+        System.out.println(supplies2.toString());
         SuppliesPackage supplies3 = new SuppliesPackage(supplies1);
-        System.out.println(supplies3.mostrar());
+        System.out.println(supplies3.toString());
         System.out.println("####################################################");
         
         
         System.out.println("\n\n################# SHIELDBOOSTER ################");
         //ShieldBooster(String name, float boost, int uses)
         ShieldBooster shieldbooster1 = new ShieldBooster ("ShieldBooster1", 5.0f, 2);
-        System.out.println(shieldbooster1.mostrar());
+        System.out.println(shieldbooster1.toString());
         //vemos que funciona el metodo useit:
         /*float uso = shieldbooster1.useIt();
         System.out.println("devolucion de useit: " + uso + "\n");
@@ -53,35 +53,35 @@ public class TestP1 {
         System.out.println(shieldbooster1.mostrar());*/
         
         ShieldBooster shieldbooster2 = new ShieldBooster ("ShieldBooster2", 3.0f, 3);
-        System.out.println(shieldbooster2.mostrar());
+        System.out.println(shieldbooster2.toString());
         
         ShieldBooster shieldbooster3 = new ShieldBooster (shieldbooster1);  //constructor de copia
-        System.out.println(shieldbooster3.mostrar());
+        System.out.println(shieldbooster3.toString());
         System.out.println("############################################");
         
         
         System.out.println("\n\n################ WEAPON #################");
         //Weapon (String name, WeaponType type, int uses)
         Weapon weapon1 = new Weapon("Weapon1", WeaponType.LASER, 3);
-        System.out.println(weapon1.mostrar());
+        System.out.println(weapon1.toString());
         
         Weapon weapon2 = new Weapon("Weapon2", WeaponType.MISSILE, 1);
-        System.out.println(weapon2.mostrar());
+        System.out.println(weapon2.toString());
         //vemos que funciona el metodo useit:
         float uso = weapon2.useIt();
         System.out.println("devolucion de useit: " + uso + "\n");
-        System.out.println(weapon2.mostrar());
+        System.out.println(weapon2.toString());
         uso = weapon2.useIt();
         System.out.println("devolucion de useit: " + uso);
         
         Weapon weapon3 = new Weapon(weapon1);
-        System.out.println(weapon3.mostrar());
+        System.out.println(weapon3.toString());
         System.out.println("##############################################");
         
         
         System.out.println("\n\n##################### DICE #################");
         //Dice dice1 = new Dice();
-        //ArrayList<Weapon> arrayweapons2 = new ArrayList<>();
+        ArrayList<Weapon> arrayweapons2 = new ArrayList<>();
         Dice[] dices = new Dice[NUMERODICES];
         for(int i=0; i<100; i++){
             dices[i] = new Dice();

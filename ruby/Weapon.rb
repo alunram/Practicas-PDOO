@@ -1,5 +1,7 @@
 #encoding:utf-8
 
+require_relative 'WeaponToUI'
+
 module Deepspace
     class Weapon
         def initialize(na, ty, us) #string, weapontype, int

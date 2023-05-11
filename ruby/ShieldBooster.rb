@@ -1,5 +1,7 @@
 #encoding:utf-8
 
+require_relative 'ShieldToUI'
+
 module Deepspace
     class ShieldBooster
         def initialize(na, bo, us) #string, float, int
@@ -30,7 +32,7 @@ module Deepspace
         def useIt
             if(uses > 0)
                 @uses -= 1
-                boost
+                return boost
             else
                 return 1.0
             end

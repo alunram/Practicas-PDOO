@@ -1,5 +1,7 @@
 #encoding:utf-8
 
+require_relative 'LootToUI'
+
 module Deepspace
     class Loot
         def initialize(sup, wea, shi, han, med) #son enteros
@@ -24,6 +26,10 @@ module Deepspace
 
         def nMedals
             @nMedals
+        end
+
+        def nHangars
+            @nHangars
         end
 
         def to_s

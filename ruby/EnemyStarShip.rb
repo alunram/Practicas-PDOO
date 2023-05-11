@@ -1,5 +1,8 @@
 #encoding-utf: 8
 
+require_relative 'EnemyToUI'
+require_relative 'ShotResult'
+
 module Deepspace
     class EnemyStarShip
         def initialize(n, a, s, l, d)   #string, float, float, loot, damage
@@ -40,9 +43,17 @@ module Deepspace
         end
 
         def to_s
-            l = @loot.to_s
-            d = @damage.to_s
-            return "Name: #{@name}, AmmoPower: #{@ammoPower}, ShieldPower: #{@shieldPower}, Loot: " + l + "Damage: " + d
+            l = "vacio"
+            if loot != nil
+                l = @loot.to_s
+            end
+
+            d = "vacio"
+            if damage != nil
+                d = @damage.to_s
+            end
+
+            return "Name: #{@name}, AmmoPower: #{@ammoPower}, ShieldPower: #{@shieldPower}, Loot: " + l + ", Damage: " + d
         end
     end
 end

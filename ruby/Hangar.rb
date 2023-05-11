@@ -1,5 +1,7 @@
 #encoding:utf-8
 
+require_relative 'HangarToUI'
+
 module Deepspace
     class Hangar
         def initialize(capacity)    #es un int
@@ -68,8 +70,8 @@ module Deepspace
         end
 
         def removeWeapon(w)     #w es un int(la posicion), devuelve un weapon
-            if((s >= 0) && (s < @weapons.length))
-                return @weapons.delete_at(s)
+            if((w >= 0) && (w < @weapons.length))
+                return @weapons.delete_at(w)
             else return nil
             end
         end

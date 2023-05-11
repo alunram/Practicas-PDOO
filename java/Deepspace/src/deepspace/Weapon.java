@@ -47,8 +47,13 @@ public class Weapon {   //quito el public?
             return 1.0f;
     }
     
+    WeaponToUI getUIversion(){
+        return new WeaponToUI(this);
+    }
+    
     //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE WEAPON:
-    public String mostrar(){
+    @Override
+    public String toString(){
         String result = "name: "  + this.name + "\n";
         result  = result + "    Type: " + getType() + "\n";
         result  = result + "    Uses: " + getUses() + "\n";

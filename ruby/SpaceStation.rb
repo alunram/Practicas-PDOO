@@ -1,9 +1,12 @@
 #encoding-utf:8
 
+require_relative 'SpaceStationToUI'
+require_relative 'CardDealer'
+
 module Deepspace
    class SpaceStation
         @@MAXFUEL = 100             #maxima cantidad de combustible
-        @@SHIELDLOSSPERUNIT = 0.1   #unidades de escudo que se pierden por unidad de potencia de disparo recibido
+        @@SHIELDLOSSPERUNITSHOT = 0.1   #unidades de escudo que se pierden por unidad de potencia de disparo recibido
         def initialize(n, s) #string, suppliespackage
             @name = n
             @ammoPower = s.ammoPower           #float
@@ -16,22 +19,23 @@ module Deepspace
             @shieldBoosters = Array.new
         end
 
-        private:
+        private
         def assignFuelValue(f)
             if ( f > @@MAXFUEL)
                 @fuelUnits = @@MAXFUEL
-              else
+            else
                 @fuelUnits = f
+            end
         end
 
         def cleanPendingDamage
             if( @pendingDamage.hasNoEffect )
                 @pendingDamage = nil
-              end
+            end
         end
 
-        public:
-        def cleanUpMpuntedItems #elimina elementos con 0 usos
+        public
+        def cleanUpMountedItems #elimina elementos con 0 usos
             wnu = []
             snu = []
             @weapons.each{ |w|
@@ -57,25 +61,49 @@ module Deepspace
         end
 
         def discardShieldBooster(i) #i int
-            
+            size = @shieldBoosters.length
+            if ( i>=0 && i<size)
+                s = @shieldBoosters.delete_at(i)
+                if @pendingDamage != nil
+                    @pendingDamage.discardShieldBooster
+                    cleanPendingDamage
+                end
+            end
         end
 
-        def discardShieldBoosterInHangar #i int
+        def discardShieldBoosterInHangar(i) #i int
             if (@hangar != nil)
                 @hangar.removeShieldBooster(i)
+            end
         end
 
         def discardWeapon(i) #i int
-            
+            size = @weapons.length
+            if ( i>=0 && i<size)
+                w = @weapons.delete_at(i)
+                if @pendingDamage != nil
+                    @pendingDamage.discardWeapon(w)
+                    cleanPendingDamage
+                end
+            end
         end
 
         def discardWeaponInHangar(i)
             if (@hangar != nil)
                 @hangar.removeWeapon(i)
+            end
         end
 
         def fire
-            
+            size = @weapons.length
+            factor = 1.0
+
+            for i in (0..size-1)
+                w = @weapons.at(i)
+                factor *= w.useIt
+            end
+
+            return ammoPower*factor
         end
 
         attr_reader :ammoPower
@@ -85,6 +113,7 @@ module Deepspace
         attr_reader :nMedals
         attr_reader :pendingDamage
         attr_reader :shieldBoosters
+        attr_reader :weapons
         attr_reader :shieldPower
 
         def speed
@@ -97,7 +126,7 @@ module Deepspace
 
         def mountShieldBooster(i)
             if (@hangar != nil && i>=0 && i<@hangar.shieldBoosters.length)
-                sb = @hangar.removeWeapon(i)
+                sb = @hangar.removeShieldBooster(i)
                 if(sb != nil)
                   @shieldBoosters.push(sb)
                 end
@@ -118,29 +147,46 @@ module Deepspace
             @fuelUnits -= (speed*fuelUnits)
             if @fuelUnits<0
                 @fuelUnits = 0
-      end
+            end
         end
 
         def protection
+            size = @shieldBoosters.length
+            factor = 1.0
+
+            for i in (0..size-1)
+                s = @shieldBoosters.at(i)
+                factor *= s.useIt
+            end
             
+            return shieldPower*factor
         end
 
         def receiveHangar(h)
             if (@hangar == nil)
                 @hangar = h
-              end
+            end
         end
 
         def receiveShieldBooster(s)
             if (@hangar != nil)
-                return @hangar.addShieldBooster(_shield)
+                return @hangar.addShieldBooster(s)
               else
                 false
-              end
+            end
         end
 
         def receiveShot(shot) #shot es float
-            
+            myProtection = self.protection
+            if(myProtection>=shot)
+                @shieldPower -= @@SHIELDLOSSPERUNITSHOT * shot
+                @shieldPower = [0.0,@shieldPower].max
+                return Deepspace::ShotResult::RESIST
+            else
+                @shieldPower = 0.0
+                return Deepspace::ShotResult::DONOTRESIST
+            end
+
         end
 
         def receiveSupplies(s)
@@ -157,11 +203,38 @@ module Deepspace
             if(hangar != nil)
                 return @hangar.addWeapon(w)
               else return false
-              end
+            end
         end
 
         def setLoot(loot)
-            
+            dealer = Deepspace::CardDealer.instance
+            h = loot.nHangars
+
+            if(h>0)
+                hangar = dealer.nextHangar()
+                receiveHangar(hangar)
+            end
+
+            elements = loot.nSupplies
+            for i in (1..elements)
+                sup = dealer.nextSuppliesPackage
+                receiveSupplies(sup)
+            end
+
+            elements = loot.nWeapons
+            for i in (1..elements)
+                weap = dealer.nextWeapon
+                receiveWeapon(weap)
+            end
+
+            elements = loot.nShields
+            for i in (1..elements)
+                sh = dealer.nextShieldBooster
+                receiveShieldBooster(sh)
+            end
+
+            medals = loot.nMedals
+            @nMedals += medals
         end
 
         def setPendingDamage(d)
@@ -172,8 +245,9 @@ module Deepspace
         def validState
             if @pendingDamage == nil
                 return true
-              end
-              return @pendingDamage.hasNoEffect
+            end
+
+            return @pendingDamage.hasNoEffect
         end
 
         def to_s
@@ -182,18 +256,21 @@ module Deepspace
                 pd += "#{@pendingDamage.to_s}"
             else    pd += "nil"
             end
+
             we = ", Weapons mounted: "
             if (!@weapons.empty?)
                 @weapons.each { |aux|
                     we += "#{aux.to_s}"
                 }
             end
+
             sh = ", Shield Boosters mounted: "
             if (!@shieldBoosters.empty?)
                 @shieldBoosters.each { |aux|
                     sh += "#{aux.to_s}"
                 }
             end
+
             h = "Hangar:"
             if hangar != nil
                 h += "#{@hangar.to_s}"

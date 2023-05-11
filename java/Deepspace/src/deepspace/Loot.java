@@ -44,8 +44,13 @@ public class Loot {     //Se quita el public?. En los consultores se debe poner 
         return nMedals;
     }
     
-    //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE LOOT:
-    public String mostrar(){
+    LootToUI getUIversion(){
+        return new LootToUI(this);
+    }
+    
+    //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE LOOT: (para la p2 lo pide, le cambio el nombre a toString)
+    @Override
+    public String toString(){
         String result = "Loot: ";
         result  = result + "NSupplies: " + getNSupplies() + "\n";
         result  = result + "    NWeapons: " + getNWeapons() + "\n";
@@ -55,4 +60,6 @@ public class Loot {     //Se quita el public?. En los consultores se debe poner 
         
         return result;
     }
+    
+    
 }

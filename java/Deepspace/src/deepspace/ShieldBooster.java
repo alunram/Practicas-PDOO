@@ -44,8 +44,13 @@ public class ShieldBooster { //quito el public?
             return 1.0f;
     }
     
-    //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE SHIELDBOOSTER:
-    public String mostrar(){
+    ShieldToUI getUIversion(){
+        return new ShieldToUI(this);
+    }
+    
+    //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE SHIELDBOOSTER: (para la p2 lo pide, le cambio el nombre a toString)
+    @Override
+    public String toString(){
         String result = "name: "  + this.name + "\n";
         result  = result + "    Boost: " + getBoost() + "\n";
         result  = result + "    Uses: " + getUses() + "\n";

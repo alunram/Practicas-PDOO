@@ -40,7 +40,8 @@ public class SuppliesPackage {  //Se quita el public?
     }
     
     //EXTRA: PARA VER FACILMENTE EL CONTENIDO DE UNA INSTANCIA DE LOOT:
-    public String mostrar(){
+    @Override
+    public String toString(){
         String result = "SuppliesPackage: ";
         result  = result + "    AmmoPower: " + getAmmoPower() + "\n";
         result  = result + "    FuelUnits: " + getFuelUnits() + "\n";
