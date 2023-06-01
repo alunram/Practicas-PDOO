@@ -23,7 +23,7 @@ public class Hangar {
     
     Hangar(Hangar h){
         //maxElements = h.maxElements;
-        this(h.maxElements);
+        this(h.maxElements); //para no reutilizar codigo
         
         for(Weapon w : h.weapons){
             weapons.add(w);

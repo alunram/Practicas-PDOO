@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+        <TitledBorder title="Loot"/>
+      </Border>
+    </Property>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="LabelHangar" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="LabelWeapons" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="valor_armas" min="-2" max="-2" attributes="0"/>
+                          <Component id="valor_hangar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="LabelShields" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="47" max="32767" attributes="0"/>
+                      <Component id="valor_escudos" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="LabelTransform" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="valor_transformacion" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="LabelFuel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="LabelMedals" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="valor_medallas" min="-2" max="-2" attributes="0"/>
+                          <Component id="valor_fuel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LabelWeapons" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LabelFuel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="valor_fuel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="valor_armas" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LabelShields" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LabelMedals" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="valor_medallas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="valor_escudos" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LabelHangar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LabelTransform" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="valor_hangar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="valor_transformacion" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="LabelWeapons">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Fira Sans Semi-Light" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="-Weapons:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelShields">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Fira Sans Semi-Light" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="-Shields:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelHangar">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Fira Sans Semi-Light" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="-Hangar size:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelFuel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Fira Sans Semi-Light" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="-Fuel:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelMedals">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Fira Sans Semi-Light" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="-Medals:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelTransform">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Fira Sans Semi-Light" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="-Transform:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="valor_armas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="armas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="valor_escudos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="escudos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="valor_hangar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="hangar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="valor_fuel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="fuel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="valor_medallas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="medallas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="valor_transformacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="transformar"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

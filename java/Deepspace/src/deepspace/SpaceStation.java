@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author alvaro
  */
-public class SpaceStation {
+public class SpaceStation implements SpaceFighter{
     private static final float MAXFUEL = 100f;
     private static final float SHIELDLOSSPERUNITSHOT = 0.1f; 
     
@@ -33,6 +33,20 @@ public class SpaceStation {
         /*weapons = null;
         shieldBoosters = null;      //si pongo estos nulls peta al iniciar
         hangar = null;*/
+    }
+    
+    SpaceStation(SpaceStation station){
+        this(station.getName(), new SuppliesPackage(station.getAmmoPower(), station.getFuelUnits(), station.getShieldPower()));
+        pendingDamage = station.pendingDamage;
+        nMedals = station.nMedals;
+        
+        station.weapons.forEach(w -> {
+            weapons.add(w);
+        });
+        station.shieldBoosters.forEach(s -> {
+            shieldBoosters.add(s);
+        });
+        hangar = station.hangar;
     }
     
     private void assignFuelValue(float f){
@@ -109,6 +123,7 @@ public class SpaceStation {
         }
     }
     
+    @Override
     public float fire(){
         int size = weapons.size();
         float factor = 1;
@@ -197,6 +212,7 @@ public class SpaceStation {
         }
     }
     
+    @Override
     public float protection(){
         int size = shieldBoosters.size();
         float factor = 1;
@@ -222,6 +238,7 @@ public class SpaceStation {
         }else return false;
     }
     
+    @Override
     public ShotResult receiveShot(float shot){
         float myProtection = protection();
         
@@ -249,7 +266,7 @@ public class SpaceStation {
         }else return false;
     }
     
-    public void setLoot(Loot loot){
+    public Transformation setLoot(Loot loot){
         CardDealer dealer = CardDealer.getInstance();
         int h = loot.getNHangars();
         
@@ -279,6 +296,14 @@ public class SpaceStation {
         int medals = loot.getNMedals();
         
         nMedals += medals;
+        
+        if(loot.getEfficient()){
+            return Transformation.GETEFFICIENT;
+        }else{
+            if(loot.spaceCity()){
+                return Transformation.SPACECITY;
+            } else return Transformation.NOTRANSFORM;
+        }
     }
     
     public void setPendingDamage(Damage d){

@@ -15,6 +15,8 @@ public class Loot {     //Se quita el public?. En los consultores se debe poner 
     private int nShields;
     private int nHangars;
     private int nMedals;
+    private boolean getEfficient;
+    private boolean spaceCity;
     
     Loot(int nsu, int nw, int nsh, int nh, int nm){
         nSupplies = nsu;
@@ -22,6 +24,26 @@ public class Loot {     //Se quita el public?. En los consultores se debe poner 
         nShields = nsh;
         nHangars = nh;
         nMedals = nm;
+        getEfficient = false;
+        spaceCity = false;
+    }
+    
+    Loot(int nsu,int nw,int nsh, int nh,int nm, boolean ge, boolean sc){
+        nSupplies = nsu;
+        nWeapons = nw;
+        nShields = nsh;
+        nHangars = nh;   
+        nMedals = nm;
+        getEfficient = ge;
+        spaceCity = sc;
+    }
+    
+    public final boolean getEfficient(){
+        return getEfficient;
+    }
+    
+    public final boolean spaceCity(){
+        return spaceCity;
     }
     
     public int getNSupplies(){

@@ -2,6 +2,7 @@
 
 require_relative 'SpaceStationToUI'
 require_relative 'CardDealer'
+require_relative 'Transformation'
 
 module Deepspace
    class SpaceStation
@@ -54,6 +55,19 @@ module Deepspace
             snu.each{ |sbNoUses|
                 @shieldBoosters.delete(sbNoUses)
             }
+        end
+
+        def copy(s)
+            @ammoPower = s.ammoPower
+            @name = s.name
+            @shieldPower = s.shieldPower
+            @fuelUnits = s.fuelUnits
+            @nMedals = s.nMedals
+
+            @pendingDamage = s.pendingDamage
+            @weapons = s.weapons
+            @shieldBoosters = s.shieldBoosters
+            @hangar = s.hangar
         end
 
         def discardHangar
@@ -235,6 +249,15 @@ module Deepspace
 
             medals = loot.nMedals
             @nMedals += medals
+
+            if loot.efficient
+                return Deepspace::Transformation::GETEFFICIENT
+            end 
+            if loot.spaceCity
+                return Deepspace::Transformation::SPACECITY
+            end
+    
+            return Deepspace::Transformation::NOTRANSFORM
         end
 
         def setPendingDamage(d)

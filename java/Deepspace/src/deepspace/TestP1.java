@@ -16,7 +16,26 @@ public class TestP1 {
         final int NUMERODICES = 100;
         
         // TODO code application logic here
-        System.out.println("################# LOOT ##################");
+        
+        System.out.println("################# WEAPONTYPE ##################");
+        System.out.println(WeaponType.LASER);
+        System.out.println(WeaponType.MISSILE);
+        System.out.println(WeaponType.PLASMA);
+        System.out.println("########################################");
+        
+        System.out.println("\n\n############ GAMECHARACTER ############");
+        System.out.println(GameCharacter.ENEMYSTARSHIP);
+        System.out.println(GameCharacter.SPACESTATION);
+        System.out.println("########################################");
+        
+        
+        System.out.println("\n\n############ SHOTRESULT ############");
+        System.out.println(ShotResult.DONOTRESIST);
+        System.out.println(ShotResult.RESIST);
+        System.out.println("########################################");
+        
+        
+        System.out.println("\n\n################# LOOT ##################");
         //Loot(int nsupplies, int nweapons, int nshields, int nhangars, int nmedals)
         Loot loot1 = new Loot(1,2,3,4,5);
         System.out.println(loot1.toString());
@@ -184,6 +203,19 @@ public class TestP1 {
         System.out.println("Comprobacion metodo spaceStationMoves. Deberían salir sobre 50 result0 y 50 result1: ");
         System.out.println("    result0: " + result0 + "  result1: " + result1);
         System.out.println("######################################");
+        
+        System.out.println("\n\n###############EXTRA#######################");
+        final int NUM_ITERACCIONES = 5;
+        ArrayList<Weapon> arr_wep = new ArrayList<>();
+        for (int i=0; i<NUM_ITERACCIONES;i++){
+            String nombre = "Weapon" + i;
+            arr_wep.add(new Weapon(nombre, WeaponType.LASER, 3));
+        }
+        
+        for(Weapon w : arr_wep){
+                System.out.println(w.toString());
+            }
+        
     }
 }
 

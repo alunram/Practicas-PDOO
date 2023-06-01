@@ -10,11 +10,15 @@ require_relative 'EnemyStarShip'
 require_relative 'SuppliesPackage'
 require_relative 'SpaceStation'
 require_relative 'GameUniverse'
+require_relative 'SpecificDamage'
+require_relative 'NumericDamage'
 
 module Deepspace
     class TestP2
+        @@NUM_ITERACCIONES = 5
         def main
             #SUPPLIES, LOOT, ARMAS Y ESCUDOS
+            #si fuese fuera del modulo deepspace habria que poner Deepspace:: (como esta puesto en testp1)
             l1 = Loot.new(1, 2, 3, 4, 5)
             l2 = Loot.new(1, 1, 1, 1, 1)
             su1 = SuppliesPackage.new(2,3,5)
@@ -62,12 +66,12 @@ module Deepspace
             arrayWT = [w1.type,w2.type,w3.type]
             arrayW2 = [w1,w2,w3,w4,w5,w6]
             arrayWT2 = [w1.type,w2.type,w5.type,w3.type,w4.type,w6.type]
-            dam1 = Damage.newNumericWeapons(3,5)
-            dam2 = Damage.newCopy(dam1)
-            dam3 = Damage.newSpecificWeapons(arrayWT2,10)
-            dam4 = Damage.newCopy(dam3)
-            dam5 = Damage.newNumericWeapons(0,0)
-            dam6 = Damage.newNumericWeapons(1,0)
+            dam1 = NumericDamage.new(3,5)
+            dam2 = dam1.copy()
+            dam3 = SpecificDamage.new(arrayWT2,10)
+            dam4 = dam3.copy()
+            dam5 = NumericDamage.new(0,0)
+            dam6 = NumericDamage.new(1,0)
 
             puts "Damage 1: " + dam1.to_s
             puts "Damage 2: " + dam2.to_s
@@ -92,7 +96,7 @@ module Deepspace
             else puts "dam5 si tiene efecto"
             end
 
-            ######FALTA PROBAR EL ADJUST
+            ######FALTA PROBAR EL ADJUST. he hecho un metodo aparte, esta abjao
 
 
             puts "######################## ENEMY ######################## \n"
@@ -186,24 +190,24 @@ module Deepspace
             arraySB = [sb1, sb2, sb3]
             arraySB2 = []
 
-            dam1 = Damage.newNumericWeapons(3,5)
-            dam2 = Damage.newSpecificWeapons(arrayWT2,10)
-            dam3 = Damage.newNumericWeapons(0,0)
-            dam4 = Damage.newNumericWeapons(1,0)
-            dam5 = Damage.newSpecificWeapons(arrayWT,5)
-            dam6 = Damage.newSpecificWeapons(arrayWT2,0)
-            dam7 = Damage.newNumericWeapons(7,0)
-            dam8 = Damage.newNumericWeapons(0,7)
-            dam9 = Damage.newSpecificWeapons(arrayWT3,5)
-            dam10 = Damage.newNumericWeapons(7,1)
-            dam11 = Damage.newSpecificWeapons(arrayWT2,1)
-            dam12 = Damage.newNumericWeapons(3,7)
-            dam13 = Damage.newSpecificWeapons(arrayWT,5)
-            dam14 = Damage.newSpecificWeapons(arrayWT3,0)
-            dam15 = Damage.newNumericWeapons(1,1)
-            dam16 = Damage.newSpecificWeapons(arrayWT4,1)
-            dam17 = Damage.newNumericWeapons(3,3)
-            dam18 = Damage.newSpecificWeapons(arrayWT,3)
+            dam1 = NumericDamage.new(3,5)
+            dam2 = SpecificDamage.new(arrayWT2,10)
+            dam3 = NumericDamage.new(0,0)
+            dam4 = NumericDamage.new(1,0)
+            dam5 = SpecificDamage.new(arrayWT,5)
+            dam6 = SpecificDamage.new(arrayWT2,0)
+            dam7 = NumericDamage.new(7,0)
+            dam8 = NumericDamage.new(0,7)
+            dam9 = SpecificDamage.new(arrayWT3,5)
+            dam10 = NumericDamage.new(7,1)
+            dam11 = SpecificDamage.new(arrayWT2,1)
+            dam12 = NumericDamage.new(3,7)
+            dam13 = SpecificDamage.new(arrayWT,5)
+            dam14 = SpecificDamage.new(arrayWT3,0)
+            dam15 = NumericDamage.new(1,1)
+            dam16 = SpecificDamage.new(arrayWT4,1)
+            dam17 = NumericDamage.new(3,3)
+            dam18 = SpecificDamage.new(arrayWT,3)
 
             #caso 1 / normal, hay de todo bien
             puts "caso 1, hay de todo bien"
@@ -249,6 +253,18 @@ module Deepspace
             puts dam17.adjust(arrayW, arraySB).to_s #sale un damage de 3sb y 3w
             puts dam18.adjust(arrayW, arraySB).to_s #sale un damage de 3sb y 3w
 
+
+            #EXTRA: 
+            arrayW4 = []
+            for i in 0..@@NUM_ITERACCIONES-1 do
+                nombre = "Weapon "+i.to_s
+                arrayW4.push(Weapon.new(nombre, WeaponType::LASER, 32))
+                puts " "
+            end
+
+            arrayW4.each{ |w_arr|
+                #puts w_arr.to_s
+            }
         end
     end
 

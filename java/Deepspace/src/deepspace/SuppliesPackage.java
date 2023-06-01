@@ -23,7 +23,7 @@ public class SuppliesPackage {  //Se quita el public?
     SuppliesPackage(SuppliesPackage copia){
         this(copia.ammoPower, copia.fuelUnits, copia.shieldPower);
         /*ammoPower = copia.ammoPower;
-        fuelUnits = copia.fuelUnits;
+        fuelUnits = copia.fuelUnits;    //NO REPETIR CODIGO!!!
         shieldPower = copia.shieldPower;*/
     }
     

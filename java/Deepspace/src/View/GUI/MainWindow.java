@@ -1,0 +1,269 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package View.GUI;
+
+import View.DeepSpaceView;
+import controller.Controller;
+import deepspace.GameState;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author alvaro
+ */
+public class MainWindow extends javax.swing.JFrame implements DeepSpaceView{
+    
+    private static MainWindow instance = null;
+    
+    private String appName = "Deepspace game by Alvaro Luna";
+    
+    private SpaceStationView stationView;
+    
+    private EnemyStarShipView enemyView;
+    
+    public static MainWindow getInstance() {
+        if (instance == null) {
+            instance = new MainWindow();
+        }
+
+        return instance;
+    }
+    
+    public String getAppName(){
+        return appName;
+    }
+    
+    /**
+     * Creates new form MainWindow
+     */
+    public MainWindow() {
+        initComponents();
+        
+        stationView = new SpaceStationView();
+        enemyView = new EnemyStarShipView();
+        
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                Controller.getInstance().finish(0);
+            }
+        });
+    }
+    
+    @Override
+    public void updateView(){
+        stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());
+        PanelSpaceStation.add(stationView);
+        enemyView.setEnemy(Controller.getInstance().getUIversion().getCurrentEnemy());
+        PanelEnemy.add(enemyView);
+        
+        GameState state = Controller.getInstance().getState();
+        
+        if(state == GameState.INIT){
+            CombatirButt.setEnabled(true);
+            TurnoButt.setEnabled(false);
+        }else
+            if(state == GameState.BEFORECOMBAT){
+                CombatirButt.setEnabled(true);
+                TurnoButt.setEnabled(false);
+            }else
+                if(state == GameState.AFTERCOMBAT){
+                    CombatirButt.setEnabled(false);
+                    TurnoButt.setEnabled(true);
+                }
+        
+        repaint();
+    }
+    
+    @Override
+    public void showView() {
+        this.setVisible(true);
+    }
+    
+    @Override
+    public ArrayList<String> readNamePlayers() {
+       NamesCapture names = new NamesCapture(this);
+
+        return names.getNames();
+    }
+    
+    @Override
+    public boolean confirmExitMessage() {
+        return (JOptionPane.showConfirmDialog(this, "¿Estás segur@ que deseas salir?", getAppName(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
+    }
+
+    @Override
+    public void nextTurnNotAllowedMessage() {
+        JOptionPane.showMessageDialog(this, "No puedes avanzar de turno, no has cumplido tu castigo.", getAppName(), JOptionPane.ERROR_MESSAGE);
+    }
+
+    @Override
+    public void lostCombatMessage() {
+        JOptionPane.showMessageDialog(this, "Has PERDIDO el combate. Cumple tu castigo.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void escapeMessage() {
+        JOptionPane.showMessageDialog(this, "Has logrado escapar. Eres una gallina espacial.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void wonCombatMessage() {
+        JOptionPane.showMessageDialog(this, "Has GANADO el combate. Disfruta de tu botín.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void wonGameMessage() {
+        JOptionPane.showMessageDialog(this, "¡HAS GANADO LA PARTIDA!", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void conversionMessage() {
+        JOptionPane.showMessageDialog(this, "Has GANADO el combate. Además, te has CONVERTIDO. ¡Disfruta de tu botín!", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    @Override
+    public void wonCombatAndConvertsMessage() {
+        if(Controller.getInstance().getUIversion().getCurrentEnemy().getLoot().isGetEfficient()){
+            JOptionPane.showMessageDialog(this, "Has GANADO el combate. \nAdemás te has CONVERTIDO en una estación EFICIENTE. \nDisfruta de tu botín.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Has GANADO el combate. \nAdemás te has CONVERTIDO en una CIUDAD ESPACIAL. \nDisfruta de tu botín.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    @Override
+    public void noCombatMessage() {
+        JOptionPane.showMessageDialog(this, "No puedes combatir en este momento", getAppName(), JOptionPane.ERROR_MESSAGE);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        PanelSpaceStation = new javax.swing.JPanel();
+        PanelEnemy = new javax.swing.JPanel();
+        CombatirButt = new javax.swing.JButton();
+        TurnoButt = new javax.swing.JButton();
+        SalirButt = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        CombatirButt.setFont(new java.awt.Font("Fira Sans Semi-Light", 1, 24)); // NOI18N
+        CombatirButt.setText("COMBATIR");
+        CombatirButt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombatirButtActionPerformed(evt);
+            }
+        });
+
+        TurnoButt.setFont(new java.awt.Font("Fira Sans Semi-Light", 1, 24)); // NOI18N
+        TurnoButt.setText("SIGUIENTE TURNO");
+        TurnoButt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TurnoButtActionPerformed(evt);
+            }
+        });
+
+        SalirButt.setFont(new java.awt.Font("Fira Sans Semi-Light", 1, 24)); // NOI18N
+        SalirButt.setText("SALIR");
+        SalirButt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirButtActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelSpaceStation, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(PanelEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(TurnoButt, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SalirButt, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CombatirButt, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(176, 176, 176))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanelSpaceStation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PanelEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CombatirButt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SalirButt, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TurnoButt, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 29, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void CombatirButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombatirButtActionPerformed
+        // TODO add your handling code here:
+        Controller.getInstance().combat();
+        updateView();
+        revalidate();
+    }//GEN-LAST:event_CombatirButtActionPerformed
+
+    private void SalirButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirButtActionPerformed
+        // TODO add your handling code here:
+        Controller.getInstance().finish(0);
+    }//GEN-LAST:event_SalirButtActionPerformed
+
+    private void TurnoButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TurnoButtActionPerformed
+        // TODO add your handling code here:
+        Controller.getInstance().nextTurn();
+        updateView();
+        revalidate();
+    }//GEN-LAST:event_TurnoButtActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    /*SE PUEDE QUITAR, NO SE VA A USAR *public static void main(String args[]) {
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainWindow().setVisible(true);
+            }
+        });
+    }*/
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CombatirButt;
+    private javax.swing.JPanel PanelEnemy;
+    private javax.swing.JPanel PanelSpaceStation;
+    private javax.swing.JButton SalirButt;
+    private javax.swing.JButton TurnoButt;
+    // End of variables declaration//GEN-END:variables
+}

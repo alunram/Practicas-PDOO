@@ -5,17 +5,16 @@
  */
 package deepspace;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  *
  * @author alvaro
  */
-public class Damage {
-    static private final int NOUSE = -1;
+public abstract class Damage {
+    //static private final int NOUSE = -1;
     private int nShields;
-    private int nWeapons;
-    private ArrayList<WeaponType> weapons = new ArrayList<>();
+    //private int nWeapons;
+    //private ArrayList<WeaponType> weapons = new ArrayList<>();
     
     /*Damage(int w, int s){
         nShields = s;
@@ -42,7 +41,7 @@ public class Damage {
         }   
     }*/
     
-    Damage(int w, int s){
+    /*Damage(int w, int s){
         constructorAuxiliar(w,s,null);
     }
     
@@ -71,9 +70,32 @@ public class Damage {
                 weapons.add(wt);
             }
         }
+    }*/
+    
+    Damage(int s){
+        nShields = s;
     }
     
-    DamageToUI getUIversion(){
+    public int getNShields(){
+        return nShields;
+    }
+    
+    public abstract Damage copy();
+    
+    public abstract DamageToUI getUIversion();
+        
+    public abstract Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s);
+    
+    public abstract void discardWeapon(Weapon w);
+    
+    public void discardShieldBooster(){
+        if(nShields > 0)
+            nShields = nShields-1;
+    }
+    
+    public abstract boolean hasNoEffect();
+    
+    /*DamageToUI getUIversion(){
         return new DamageToUI(this);
     }
     
@@ -146,9 +168,7 @@ public class Damage {
         else return ((nShields == 0) && (weapons.isEmpty()));
     }
     
-    public int getNShields(){
-        return nShields;
-    }
+    
     
     public int getNWeapons(){
         return nWeapons;
@@ -156,14 +176,14 @@ public class Damage {
     
     public ArrayList<WeaponType> getWeapons(){
         return weapons;
-    }
+    }*/
     
     @Override
     public String toString(){
         String test;
         //CONTENT
-        String nSh = "- NSHIELDS: " + nShields + " ";
-        String nW = "- NWEAPONS: " + nWeapons + "\n";
+        String nSh = "DAMAGE: \n- NSHIELDS: " + nShields + " ";
+        /*String nW = "- NWEAPONS: " + nWeapons + "\n";
         
         String arrWT = "- WEAPONS: ";
         if(weapons == null || weapons.isEmpty()){
@@ -175,6 +195,7 @@ public class Damage {
         
         test = nSh + nW + arrWT;
         
-        return test;
+        return test;*/
+        return nSh;
     }
 }

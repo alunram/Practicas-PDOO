@@ -7,7 +7,12 @@ module Deepspace
             @NSHIELDSPROB = 0.25
             @NWEAPONSPROB = 0.33
             @FIRSTSHOTPROB = 0.5
+            @EXTRAEFFICIENCYPROB = 0.8
             @generator = rand()
+        end
+
+        def extraEfficiency
+            return (@generator <= @EXTRAEFFICIENCYPROB)
         end
 
         #Este método determina el número de hangares que recibirá una estación espacial al ser creada

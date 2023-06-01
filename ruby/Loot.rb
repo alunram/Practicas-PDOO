@@ -4,12 +4,14 @@ require_relative 'LootToUI'
 
 module Deepspace
     class Loot
-        def initialize(sup, wea, shi, han, med) #son enteros
+        def initialize(sup, wea, shi, han, med, ef=false, city=false) #seran enteros, menos los parametros nuevos de la P4
             @nSupplies = sup
             @nWeapons = wea
             @nShields = shi
             @nHangars = han
             @nMedals = med
+            @getEfficient = ef
+            @spaceCity = city
         end
 
         def nSupplies
@@ -32,8 +34,18 @@ module Deepspace
             @nHangars
         end
 
+        def efficient
+            return @getEfficient
+        end
+        
+        def spaceCity
+            return @spaceCity
+        end
+
         def to_s
-            return "NSupplies: #{@nSupplies}, nWeapons: #{@nWeapons}, nShields: #{@nShields}, nHangars: #{@nHangars}, nMedals: #{@nMedals}"
+            result = "NSupplies: #{@nSupplies}, nWeapons: #{@nWeapons}, nShields: #{@nShields}, nHangars: #{@nHangars}, nMedals: #{@nMedals}"
+            result += ", getEfficient: " + efficient.to_s + ", spaceCity: " + spaceCity.to_s
+            return result
         end
 
         def getUIversion

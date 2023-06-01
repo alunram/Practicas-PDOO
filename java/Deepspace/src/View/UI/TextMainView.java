@@ -371,6 +371,11 @@ public class TextMainView implements DeepSpaceView {
   public void wonGameMessage() {
     showMessageln ("\n\tHAS GANADO LA PARTIDA");
   }
+  
+  @Override
+  public void wonCombatAndConvertsMessage(){
+    showMessageln ("Has GANADO el combate y tu nave espacial se TRANSFORMARÁ. \tDisfruta de tu botín.");
+  }
 
   @Override
   public void conversionMessage() {

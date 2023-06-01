@@ -9,7 +9,7 @@ package deepspace;
  *
  * @author alvaro
  */
-public class EnemyStarShip {
+public class EnemyStarShip implements SpaceFighter {
     private float ammoPower;
     private String name;
     private float shieldPower;
@@ -36,6 +36,7 @@ public class EnemyStarShip {
         return new EnemyToUI(this);
     }
     
+    @Override
     public float fire(){
         return ammoPower;
     }
@@ -60,10 +61,12 @@ public class EnemyStarShip {
         return shieldPower;
     }
     
+    @Override
     public float protection() {
         return shieldPower;
     }
     
+    @Override
     public ShotResult receiveShot (float shot) {
         if(shot > shieldPower)
             return ShotResult.DONOTRESIST;

@@ -4,7 +4,7 @@ require_relative 'ShieldToUI'
 
 module Deepspace
     class ShieldBooster
-        def initialize(na, bo, us) #string, float, int
+        def initialize(na, bo, us) #seran string, float, int respectivamente
             @name = na
             @boost = bo
             @uses = us
@@ -23,7 +23,7 @@ module Deepspace
         end
 
         ####################################################
-        #el guion no lo pide, pero, ¿como creo el constructor de copia sin esto?
+        #el guion no lo pide, pero, ¿como creo el constructor de copia sin esto?. respuesta del profesor: habra que ponerlo
         def name
             @name
         end

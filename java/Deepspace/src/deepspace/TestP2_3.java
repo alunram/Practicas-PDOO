@@ -78,7 +78,7 @@ public class TestP2_3 {
         arraywt2.add(weapon1.getType()); arraywt2.add(weapon2.getType()); arraywt2.add(weapon3.getType()); arraywt2.add(weapon4.getType()); arraywt2.add(weapon5.getType()); arraywt2.add(weapon6.getType());
         arraywt4.add(weapon1.getType()); //WeaponType.LASER
         
-        Damage damage1 = new Damage(3,5);
+       /* Damage damage1 = new Damage(3,5);
         Damage damage2 = new Damage(damage1);
         Damage damage3 = new Damage(arraywt2,10);
         Damage damage4 = new Damage(damage3);
@@ -248,5 +248,5 @@ public class TestP2_3 {
         System.out.println("caso9, se tiene justo lo que pide ");
         System.out.println(dam17.adjust(arrayw, arraysb)); //sale un damage de 3sb y 3w
         System.out.println(dam18.adjust(arrayw, arraysb)); //sale un damage de 3sb y 3w
-    }
+    */}
 }

@@ -18,6 +18,7 @@ public class GameUniverse {
     private GameStateController gameState;
     private EnemyStarShip currentEnemy;
     private Dice dice;
+    private boolean haveSpaceCity;
     
     public GameUniverse(){
         gameState = new GameStateController();
@@ -27,6 +28,35 @@ public class GameUniverse {
         currentStationIndex = 0;
         currentStation=null;
         currentEnemy=null;
+    }
+    
+    private void createSpaceCity(){
+        if(!haveSpaceCity){
+           ArrayList<SpaceStation> auxiliar = new ArrayList<>();
+           
+           for(int i=0; i<spaceStations.size(); i++)
+               if(i != currentStationIndex)
+                   auxiliar.add(spaceStations.get(i));
+           
+           currentStation = new SpaceCity(currentStation, auxiliar);
+           
+           spaceStations.remove(currentStationIndex);
+           spaceStations.add(currentStationIndex, currentStation);
+           
+           haveSpaceCity = true;
+       }
+    }
+    
+    private void makeStationEfficient(){
+        currentStation = new PowerEfficientSpaceStation(currentStation);
+        
+        if(dice.extraEfficiency()){
+            currentStation = new BetaPowerEfficientSpaceStation(currentStation);
+        }
+        
+        //spaceStations.set(currentStationIndex, currentStation);
+        spaceStations.remove(currentStationIndex);
+        spaceStations.add(currentStationIndex, currentStation);
     }
     
     private CombatResult combat(SpaceStation station, EnemyStarShip enemy){
@@ -67,8 +97,17 @@ public class GameUniverse {
             }
         }else{
             Loot aloot = enemy.getLoot();
-            station.setLoot(aloot);
-            combatResult = CombatResult.STATIONWINS;
+            Transformation transformation = station.setLoot(aloot);
+            
+            if (transformation == Transformation.GETEFFICIENT) {
+                makeStationEfficient();
+                combatResult = CombatResult.STATIONWINSANDCONVERTS;
+            } else if (transformation == Transformation.SPACECITY) {
+                createSpaceCity();
+                combatResult = CombatResult.STATIONWINSANDCONVERTS;
+            } else
+                combatResult = CombatResult.STATIONWINS;
+                    
         }
         
         gameState.next(turns, spaceStations.size());

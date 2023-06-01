@@ -4,7 +4,7 @@ require_relative 'HangarToUI'
 
 module Deepspace
     class Hangar
-        def initialize(capacity)    #es un int
+        def initialize(capacity)    #sera un int
             @maxElements = capacity
             @weapons = Array.new
             @shieldBoosters = Array.new

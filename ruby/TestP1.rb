@@ -7,14 +7,37 @@ require_relative 'Weapon'
 require_relative 'WeaponType'
 require_relative 'Dice'
 require_relative 'GameCharacter'
+require_relative 'ShotResult'
 
 module Deepspace
     class TestP1
         @@NUMERODICES = 100
 
         def main
+            puts "######################## WEAPONTYPE ######################## \n"
+            #dos formas de mostrarlos por pantalla:
+            puts Deepspace::WeaponType::LASER.to_s 
+            puts Deepspace::WeaponType::LASER
+            puts Deepspace::WeaponType::MISSILE
+            puts Deepspace::WeaponType::PLASMA
+            puts "############################################################## \n\n"
+
+            
+            puts "######################## GAMECHARACTER ######################## \n"
+            puts Deepspace::GameCharacter::ENEMYSTARSHIP
+            puts Deepspace::GameCharacter::SPACESTATION
+            puts "############################################################## \n\n"
+
+
+            puts "######################## SHOTRESULT ######################## \n"
+            puts Deepspace::ShotResult::DONOTRESIST
+            puts Deepspace::ShotResult::RESIST
+            puts "############################################################## \n\n"
+
+
             puts "######################## LOOT ######################## \n"
             pruebaloot1 = Deepspace::Loot.new(1,2,3,4,5)
+            puts pruebaloot1.to_s   #dos formas
             puts pruebaloot1.inspect
             pruebaloot2 = Deepspace::Loot.new(5,4,3,2,1)
             puts pruebaloot2.inspect
@@ -29,7 +52,7 @@ module Deepspace
             puts "######################## SUPPLIES PACKAGE ######################## \n"
             pruebasupplies = Deepspace::SuppliesPackage.new(1.0, 1.0, 1.0)
             puts pruebasupplies.inspect
-            puts "to_s:"
+            puts "to_s:"    #se puede poner con inspect o con to_s
             puts pruebasupplies.to_s
             pruebasupplies2 = Deepspace::SuppliesPackage.new(0.0, 5.0, 10.0)
             puts pruebasupplies2.inspect
@@ -45,22 +68,22 @@ module Deepspace
             puts "to_s:"
             puts pruebashieldbooster1.to_s
             puts pruebashieldbooster1.useIt
-            puts pruebashieldbooster1.inspect
+            puts pruebashieldbooster1.to_s
             puts pruebashieldbooster1.useIt
-            puts pruebashieldbooster1.inspect
-            puts pruebashieldbooster1.useIt
+            puts pruebashieldbooster1.to_s
+            puts pruebashieldbooster1.useIt #al final es 1, ya que tiene 0 usos
 
             pruebashieldbooster2 = Deepspace::ShieldBooster.new("ShieldBooster2", 3.0, 3)
-            puts pruebashieldbooster2.inspect
+            puts pruebashieldbooster2.to_s
             pruebashieldbooster3 = Deepspace::ShieldBooster.newCopy(pruebashieldbooster1)
-            puts pruebashieldbooster3.inspect
+            puts pruebashieldbooster3.to_s
             puts "############################################################## \n\n"
         
-
 
             puts "######################## WEAPON ######################## \n"
             pruebaweapon1 = Deepspace::Weapon.new("weapon1", Deepspace::WeaponType::LASER, 3)
             puts pruebaweapon1.inspect
+            puts pruebaweapon1.to_s
             puts "\n"
 
             puts "veo que es el tipo laser:"
@@ -69,7 +92,7 @@ module Deepspace
             puts "\n"
 
             pruebaweapon2 = Deepspace::Weapon.new("weapon2", Deepspace::WeaponType::MISSILE, 1)
-            puts pruebaweapon2.inspect
+            puts pruebaweapon2.to_s
             puts "\n"
 
             puts "veo que es el tipo missile:"
@@ -78,7 +101,7 @@ module Deepspace
             puts "\n"
 
             pruebaweapon3 = Deepspace::Weapon.newCopy(pruebaweapon1)
-            puts pruebaweapon3.inspect
+            puts pruebaweapon3.to_s
             puts "\n"
 
             puts "veo que al final sale 1 de power, cuando se acaban los usos"
@@ -185,13 +208,7 @@ module Deepspace
             puts "Comprobacion metodo spaceStationMoves. Deberían salir sobre 50 result0 y 50 result1: \n"
             puts "      result0:  #{result0}        result1: #{result1} \n"
             puts "############################################################## \n\n"
-        
-            
-        
-        
-        
-        
-        
+
         end
     end
 

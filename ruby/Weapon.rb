@@ -11,7 +11,7 @@ module Deepspace
         end
 
         ####################################
-        #no estoy seguro de si es asi
+        #no estoy seguro de si es asi. he preguntado y si, es asi
         def type
             @type
         end
